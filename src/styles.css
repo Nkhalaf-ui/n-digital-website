@@ -1,0 +1,258 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-pink-primary: var(--pink-primary);
+  --color-pink-secondary: var(--pink-secondary);
+  --color-rose: var(--rose);
+  --color-lavender: var(--lavender);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+
+  --font-display: "Space Grotesk", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Space Grotesk", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Cairo", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1.25rem;
+
+  /* Brand palette — Petal Frost #F7D0DC + Coffee Bean #2E1B1D */
+  --petal: #F7D0DC;
+  --petal-soft: #FCE8EE;
+  --petal-deep: #E8B4C4;
+  --coffee: #2E1B1D;
+  --coffee-soft: #3E2528;
+  --coffee-deep: #1B0F10;
+
+  /* Accent tokens used across components (kept names for compatibility) */
+  --pink-primary: #E8B4C4;         /* deeper petal for accents on light bg */
+  --pink-secondary: #F7D0DC;       /* petal frost */
+  --rose: #FCE8EE;                 /* very soft petal */
+  --lavender: #F7D0DC;             /* mapped to petal */
+  --cream: #FFFFFF;
+  --ink: #2E1B1D;
+
+  --background: #FBF6F1;
+  --foreground: #2E1B1D;
+  --card: #FDF6F8;                 /* very soft petal frost */
+  --card-foreground: #2E1B1D;
+  --popover: #FFFFFF;
+  --popover-foreground: #2E1B1D;
+  --primary: #2E1B1D;              /* Coffee Bean button bg (light mode) */
+  --primary-foreground: #F7D0DC;   /* Petal Frost text on button */
+  --secondary: #F7D0DC;
+  --secondary-foreground: #2E1B1D;
+  --muted: #FBEEF2;
+  --muted-foreground: #6B4F53;
+  --accent: #F7D0DC;
+  --accent-foreground: #2E1B1D;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: #FFFFFF;
+  --border: color-mix(in oklab, #2E1B1D 12%, transparent);
+  --input: color-mix(in oklab, #2E1B1D 14%, transparent);
+  --ring: #E8B4C4;
+}
+
+.dark {
+  --background: #2E1B1D;
+  --foreground: #FFFFFF;
+  --card: #3E2528;
+  --card-foreground: #FFFFFF;
+  --popover: #3E2528;
+  --popover-foreground: #FFFFFF;
+  --primary: #F7D0DC;              /* Petal Frost button bg (dark mode) */
+  --primary-foreground: #2E1B1D;   /* Coffee Bean text on button */
+  --secondary: #4A2E31;
+  --secondary-foreground: #FFFFFF;
+  --muted: #3E2528;
+  --muted-foreground: #D9BEC3;
+  --accent: #F7D0DC;
+  --accent-foreground: #2E1B1D;
+  --border: color-mix(in oklab, #F7D0DC 14%, transparent);
+  --input: color-mix(in oklab, #F7D0DC 16%, transparent);
+  --ring: #F7D0DC;
+  --pink-primary: #F7D0DC;
+  --pink-secondary: #E8B4C4;
+  --rose: #4A2E31;
+  --lavender: #3E2528;
+  --cream: #3E2528;
+  --ink: #FFFFFF;
+}
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--pink-primary) 40%, transparent);
+    color: var(--foreground);
+  }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--pink-primary) 15%, transparent);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 40%, transparent) inset,
+    0 30px 60px -30px color-mix(in oklab, var(--pink-primary) 25%, transparent);
+}
+
+@utility glass-strong {
+  background: color-mix(in oklab, var(--card) 75%, transparent);
+  backdrop-filter: blur(32px) saturate(160%);
+  border: 1px solid color-mix(in oklab, var(--pink-primary) 20%, transparent);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 50%, transparent) inset,
+    0 40px 80px -30px color-mix(in oklab, var(--pink-primary) 30%, transparent);
+}
+
+@utility text-gradient-pink {
+  background: linear-gradient(120deg, var(--primary) 0%, color-mix(in oklab, var(--primary) 70%, var(--pink-primary)) 60%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-pink {
+  background: linear-gradient(135deg, var(--primary), color-mix(in oklab, var(--primary) 80%, var(--pink-primary)));
+  color: var(--primary-foreground);
+}
+
+
+@utility shadow-glow {
+  box-shadow:
+    0 20px 60px -20px color-mix(in oklab, var(--pink-primary) 55%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--pink-primary) 15%, transparent);
+}
+
+@utility petal-divider {
+  height: 40px;
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    color-mix(in oklab, var(--pink-primary) 20%, transparent) 0,
+    transparent 60%
+  );
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-14px) }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) rotate(0) }
+  50% { transform: translate(6px, -18px) rotate(4deg) }
+}
+@keyframes ticker {
+  from { transform: translateX(0) }
+  to { transform: translateX(-50%) }
+}
+@keyframes ticker-rtl {
+  from { transform: translateX(-50%) }
+  to { transform: translateX(0) }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--pink-primary) 60%, transparent) }
+  50% { box-shadow: 0 0 0 18px color-mix(in oklab, var(--pink-primary) 0%, transparent) }
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0 }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+
+.animate-float-y { animation: float-y 6s ease-in-out infinite }
+.animate-float-slow { animation: float-slow 9s ease-in-out infinite }
+.animate-pulse-glow { animation: pulse-glow 2.2s ease-out infinite }
+
+@keyframes spin-slow { to { transform: rotate(360deg) } }
+@keyframes spin-reverse { to { transform: rotate(-360deg) } }
+@keyframes bloom-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.7 }
+  50% { transform: scale(1.15); opacity: 1 }
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(1) }
+  50% { transform: scale(1.02) }
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) }
+  50% { opacity: 1; transform: scale(1) }
+}
+@keyframes drift-particle {
+  0% { transform: translate(0, 0); opacity: 0 }
+  20% { opacity: 1 }
+  100% { transform: translate(var(--dx, 20px), var(--dy, -40px)); opacity: 0 }
+}
+@keyframes radial-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1) }
+  50% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.15) }
+}
+@keyframes marching-ants { to { stroke-dashoffset: -16 } }
+
+.animate-spin-slow { animation: spin-slow 40s linear infinite }
+.animate-spin-reverse { animation: spin-reverse 60s linear infinite }
+.animate-breathe { animation: breathe 4s ease-in-out infinite }
+.animate-bloom-pulse { animation: bloom-pulse 3s ease-in-out infinite }
+.animate-radial-glow { animation: radial-glow 8s ease-in-out infinite }
+.marching-ants {
+  stroke-dasharray: 8 4;
+  animation: marching-ants 0.8s linear infinite;
+}
+
+/* ticker */
+.ticker-track { animation: ticker 40s linear infinite }
+html[dir="rtl"] .ticker-track { animation: ticker-rtl 40s linear infinite }
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important }
+}
