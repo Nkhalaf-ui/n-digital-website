@@ -86,6 +86,7 @@ export function Contact() {
           <form
             name="contact"
             method="POST"
+            action="/"
             data-netlify="true"
             onSubmit={handleSubmit}
             className="glass-strong rounded-3xl p-6 md:p-10 space-y-4"
