@@ -13,13 +13,14 @@ export function Contact() {
     const formData = new FormData(form);
 
     try {
-      await fetch("/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(formData as any).toString(),
-      });
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbwjqKIrFLrnrxSCFDwngaoOVg6d8B8VaSMJMbFu-5o0a8Ssb_7p0ORcJqF_QVhiAAweIg/exec",
+        {
+          method: "POST",
+          body: new URLSearchParams(formData as any),
+          mode: "no-cors",
+        }
+      );
 
       setSent(true);
       form.reset();
@@ -85,14 +86,9 @@ export function Contact() {
 
           <form
             name="contact"
-            method="POST"
-            action="/"
-            data-netlify="true"
             onSubmit={handleSubmit}
             className="glass-strong rounded-3xl p-6 md:p-10 space-y-4"
           >
-            <input type="hidden" name="form-name" value="contact" />
-
             {sent ? (
               <div className="py-16 text-center">
                 <div className="mx-auto size-14 rounded-full bg-gradient-pink text-primary-foreground grid place-items-center shadow-glow">
