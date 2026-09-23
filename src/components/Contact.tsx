@@ -5,9 +5,17 @@ import { useI18n } from "@/lib/i18n";
 export function Contact() {
   const { t } = useI18n();
   const [sent, setSent] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Prevent multiple submissions
+    if (isSending || sent) {
+      return;
+    }
+
+    setIsSending(true);
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -26,6 +34,7 @@ export function Contact() {
       form.reset();
     } catch (error) {
       console.error("Form submission error:", error);
+      setIsSending(false);
     }
   };
 
@@ -126,9 +135,10 @@ export function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-gradient-pink px-6 py-4 text-sm font-semibold text-primary-foreground shadow-glow hover:scale-[1.01] transition"
+                  disabled={isSending}
+                  className="w-full rounded-full bg-gradient-pink px-6 py-4 text-sm font-semibold text-primary-foreground shadow-glow hover:scale-[1.01] transition disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
                 >
-                  {t("contact.send")}
+                  {isSending ? "Sending..." : t("contact.send")}
                 </button>
               </>
             )}
